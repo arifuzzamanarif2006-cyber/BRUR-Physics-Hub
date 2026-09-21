@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>BRUR Physics Hub</title>
+
+    <meta name="description"
+          content="BRUR Physics Hub - A learning platform for Physics students of Begum Rokeya University, Rangpur">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f8fc;
+            color: #172033;
+            line-height: 1.6;
+        }
+
+        /* NAVBAR */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: #071b33;
+            padding: 15px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.15);
+        }
+
+        .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #38bdf8;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #38bdf8;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+            background:
+                linear-gradient(rgba(3,15,31,0.88), rgba(3,15,31,0.92)),
+                radial-gradient(circle at center, #164e63, #020617);
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .hero h1 {
+            font-size: 55px;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 span {
+            color: #38bdf8;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: #dbeafe;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 13px 28px;
+            background: #0ea5e9;
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 5px;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #0284c7;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #38bdf8;
+        }
+
+        /* GENERAL */
+        section {
+            padding: 75px 7%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-title h2 {
+            font-size: 35px;
+            color: #071b33;
+        }
+
+        .section-title p {
+            color: #64748b;
+            margin-top: 8px;
+        }
+
+        /* CARDS */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 28px;
+            border-radius: 14px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: 0.3s;
+            border: 1px solid #e2e8f0;
+        }
+
+        .card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 12px 30px rgba(14,165,233,0.15);
+        }
+
+        .card-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+            color: #0f3d63;
+        }
+
+        .card p {
+            color: #64748b;
+            margin-bottom: 15px;
+        }
+
+        .card a {
+            text-decoration: none;
+            color: #0284c7;
+            font-weight: bold;
+        }
+
+        /* ABOUT */
+        .about {
+            background: #eaf6ff;
+        }
+
+        .about-box {
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+        }
+
+        /* FORMULA */
+        .formula-section {
+            background: #071b33;
+            color: white;
+        }
+
+        .formula-section .section-title h2 {
+            color: white;
+        }
+
+        .formula-section .section-title p {
+            color: #cbd5e1;
+        }
+
+        .formula {
+            background: #102b49;
+            padding: 22px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 21px;
+            color: #7dd3fc;
+            font-family: "Times New Roman", serif;
+        }
+
+        /* CALCULATOR */
+        .calculator {
+            max-width: 500px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+        }
+
+        .calculator input {
+            width: 100%;
+            padding: 13px;
+            margin: 8px 0;
+            border: 1px solid #cbd5e1;
+            border-radius: 7px;
+            font-size: 16px;
+        }
+
+        .calculator button {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            background: #0ea5e9;
+            color: white;
+            border-radius: 7px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #e0f2fe;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        /* CONTACT */
+        .contact {
+            background: #eaf6ff;
+            text-align: center;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #020617;
+            color: #cbd5e1;
+            text-align: center;
+            padding: 30px 15px;
+        }
+
+        footer strong {
+            color: #38bdf8;
+        }
+
+        /* MOBILE */
+        @media (max-width: 768px) {
+
+            nav {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            nav ul {
+                gap: 12px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .hero p {
+                font-size: 17px;
+            }
+
+            section {
+                padding: 55px 5%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+    <div class="logo">
+        BRUR <span>Physics Hub</span>
+    </div>
+
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#courses">Courses</a></li>
+        <li><a href="#notes">Notes</a></li>
+        <li><a href="#formula">Formula</a></li>
+        <li><a href="#calculator">Calculator</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+
+
+<!-- HERO -->
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <h1>
+            BRUR <span>Physics Hub</span>
+        </h1>
+
+        <p>
+            A learning platform for Physics students of
+            Begum Rokeya University, Rangpur.
+        </p>
+
+        <a href="#courses" class="btn">
+            Explore Courses
+        </a>
+
+        <a href="#notes" class="btn btn-outline">
+            Study Notes
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- COURSES -->
+<section id="courses">
+
+    <div class="section-title">
+        <h2>Physics Courses</h2>
+        <p>Learn Physics step by step</p>
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+            <div class="card-icon">🚀</div>
+            <h3>Mechanics</h3>
+            <p>
+                Kinematics, Newton's laws, work-energy,
+                momentum, rotation and gravitation.
+            </p>
+            <a href="#">View Course →</a>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">📐</div>
+            <h3>Mathematical Physics</h3>
+            <p>
+                Calculus, vectors, coordinate systems,
+                differential equations and mathematical tools.
+            </p>
+            <a href="#">View Course →</a>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">⚡</div>
+            <h3>Electricity & Magnetism</h3>
+            <p>
+                Electric field, potential, Gauss law,
+                magnetic field and electromagnetic induction.
+            </p>
+            <a href="#">View Course →</a>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">🌊</div>
+            <h3>Properties of Matter</h3>
+            <p>
+                Elasticity, surface tension, viscosity,
+                fluid mechanics and related topics.
+            </p>
+            <a href="#">View Course →</a>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- NOTES -->
+<section id="notes" class="about">
+
+    <div class="section-title">
+        <h2>Study Notes</h2>
+        <p>University-level Physics resources</p>
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+            <div class="card-icon">📘</div>
+            <h3>Lecture Notes</h3>
+            <p>
+                Topic-wise Physics lecture notes and
+                explanations.
+            </p>
+            <a href="#">Open Notes →</a>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">📝</div>
+            <h3>Exam Preparation</h3>
+            <p>
+                Important questions, suggestions and
+                solved problems.
+            </p>
+            <a href="#">Prepare Now →</a>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">🔬</div>
+            <h3>Physics Lab</h3>
+            <p>
+                Experiments, procedures, calculations and
+                viva questions.
+            </p>
+            <a href="#">Lab Resources →</a>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FORMULA -->
+<section id="formula" class="formula-section">
+
+    <div class="section-title">
+        <h2>Important Physics Formula</h2>
+        <p>Quick revision formulas</p>
+    </div>
+
+    <div class="formula">
+        F = ma
+    </div>
+
+    <div class="formula">
+        v = u + at
+    </div>
+
+    <div class="formula">
+        s = ut + ½at²
+    </div>
+
+    <div class="formula">
+        v² = u² + 2as
+    </div>
+
+    <div class="formula">
+        K = ½mv²
+    </div>
+
+    <div class="formula">
+        p = mv
+    </div>
+
+    <div class="formula">
+        E = mc²
+    </div>
+
+</section>
+
+
+<!-- CALCULATOR -->
+<section id="calculator">
+
+    <div class="section-title">
+        <h2>Physics Calculator</h2>
+        <p>Calculate force using F = ma</p>
+    </div>
+
+    <div class="calculator">
+
+        <label>Mass (kg)</label>
+
+        <input
+            type="number"
+            id="mass"
+            placeholder="Enter mass"
+        >
+
+        <label>Acceleration (m/s²)</label>
+
+        <input
+            type="number"
+            id="acceleration"
+            placeholder="Enter acceleration"
+        >
+
+        <button onclick="calculateForce()">
+            Calculate Force
+        </button>
+
+        <div class="result" id="result">
+            Result will appear here
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ABOUT -->
+<section>
+
+    <div class="section-title">
+        <h2>About BRUR Physics Hub</h2>
+    </div>
+
+    <div class="about-box">
+
+        <p>
+            <strong>BRUR Physics Hub</strong> is an educational
+            platform designed to help Physics students of
+            Begum Rokeya University, Rangpur.
+        </p>
+
+        <br>
+
+        <p>
+            The goal of this platform is to provide organized
+            notes, course materials, laboratory resources,
+            formulas, problem solving and useful Physics
+            learning resources in one place.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+
+    <div class="section-title">
+        <h2>Contact</h2>
+        <p>BRUR Physics Hub</p>
+    </div>
+
+    <p>
+        Department of Physics<br>
+        Begum Rokeya University, Rangpur
+    </p>
+
+    <br>
+
+    <a href="mailto:your-email@example.com" class="btn">
+        Email Us
+    </a>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+
+    <p>
+        © 2026 <strong>BRUR Physics Hub</strong>
+    </p>
+
+    <p>
+        Made for Physics Students
+    </p>
+
+</footer>
+
+
+<!-- JAVASCRIPT -->
+<script>
+
+function calculateForce() {
+
+    let mass =
+        parseFloat(document.getElementById("mass").value);
+
+    let acceleration =
+        parseFloat(document.getElementById("acceleration").value);
+
+    let result =
+        document.getElementById("result");
+
+    if (isNaN(mass) || isNaN(acceleration)) {
+
+        result.innerHTML =
+            "Please enter valid values.";
+
+        return;
+    }
+
+    let force = mass * acceleration;
+
+    result.innerHTML =
+        "Force = " + force + " N";
+}
+
+</script>
+
+</body>
+</html>
